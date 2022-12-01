@@ -4,7 +4,7 @@
 
 This kata aims at challenging your knowledge of low-level Node JS. No ORM, boilerplate generator nor advanced framework here: you are on your own (and your friend from ever, Express)
 
-Good luck :
+Good luck !
 
 ## Context :
 
