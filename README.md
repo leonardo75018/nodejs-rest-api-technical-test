@@ -5,7 +5,7 @@
 
 ## Stack Techniques
 
-* Javascript: Express + MongoDB
+* Javascript: Express + MongoDB _(utiliser le .nvmrc et package.json fournis)_
 * Python: Flask + MongoDB
 
 Votre application se base tout d'abord sur la modélisation d'entités: `User`, `Pass` et `Place`
@@ -31,7 +31,7 @@ Un `User` a accès à une `Place` si:
 Cette logique métier doit être servie par une API Rest. Voici les routes attendues:
 
 
-- 🛠 CRUD operations pour toutes les entités
+- 🛠 [CRUD](https://developer.mozilla.org/fr/docs/Glossary/CRUD) operations pour toutes les entités
 
 - 🚦 Une route pour vérifier si un `User` a accès à une `Place`
 
@@ -77,6 +77,10 @@ ___
 > Description précise & sans ambiguité sur les termes de ce qui est attendu
 
 
-* Le candidat `DOIT` implémenter 
-* Le candidat `DOIT` implémenter les codes de retour suivant: 200, 201, 400, 401, 403, 404, 500
+* Le candidat `DOIT` implémenter au moins 2 des 4 pistes d'Amélioration proposées. Ces améliorations `DOIVENT` être documentées dans le Readme.
+* Le candidat `PEUT` proposer & justifier une autre piste d'amélioration.
+* Le candidat `DOIT` implémenter les codes de retour suivant: 200, 201, 400, 401, 403, 404, 500.
+* L'API `DOIT` être accessible via curl.
+* Le candidat `DOIT` respecter la stack technique qui lui est demandée.
+
 
