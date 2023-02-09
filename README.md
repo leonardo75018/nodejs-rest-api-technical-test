@@ -1,76 +1,82 @@
 # Rest API
 
-
-__This kata aims at challenging your knowledge of low-level Node JS. No ORM, boilerplate generator nor advanced framework here: you are on your own (and your friend from ever, Express) Good luck !__
-
-## Context :
-
-Your team is mandated by the governement to create a new app used as a COVID context utility called "Can I go?".
-
-You're in charge of creating a webservice of this app.
-
-This webservice is a CRUD API mainly used to know if your authorized to be in some public spaces based on your current health situation, age, and level of pass (3 levels of pass : not vaccinated, recent case of covid, vaccinated).
-
-This webservice must use MongoDB as database.
-
-At start, data in JSON (that you create by yourself) must be added to BDD and CURL request to the API should be possible.
-
-## Instructions :
-
-> Your project (API + MONGODB) must be dockerize and runned by a
-> docker-compose.
-> 
-> Provided .nvmrc and package.json should be present in your project. You may add some libraries but the main logic should be implemented by yourself.
-
-- 🛠 CRUD operations for all entities (users, places, and passes)
+# Sujet: Développer une application gérant des Pass donnant accès à des User à des zones protégées.
 
 
-- 🚦 One endpoint to check if a given user can access a given public space
+## Stack Techniques
 
-- 🚦 One endpoint to check which public spaces can access a given user
+* Javascript: Express + MongoDB
+* Python: Flask + MongoDB
 
+Votre application se base tout d'abord sur la modélisation d'entités: `User`, `Pass` et `Place`
 
-- 🔒 Security and token : <br>
-A public endpoint should be created to ask for a token to consume the API. <br>
-All others endpoints should request a token in order to be consumed.<br>
-Except for a place, a ressource should only be accessed by it's owner.
-
-
-- ❌ Implements status codes <br>
-at least 200, 201, 400, 401, 403, 404, 500
+## Implémentation
 
 
-- 🌈 BONUS : Add units tests with Jest <br>
-A script npm run test should be added to your package.json
+### Logique métier
+![schema](./media-assets/entity-diagram.png)
 
 
-- 🌈 BONUS : Add documentation with Swagger
+Les `User` ont des `Pass`. Ces `Pass` leur donnent l'accès à des `Place` moyennant un niveau d'accès, _level_, un entier compris entre 1 et 5.
 
-## Entities :
+Les `Place` mettent également une contrainte sur l'_age_ du `User`.
 
-Here's the list of the 3 entities that must be implemented in the project. The fields's list is not exhaustive, and you can add more (but not less) :
+Un `User` a accès à une `Place` si:
+* il dispose d'un `Pass` avec un niveau d'accès suffisant
+* son _age_ est suffisant
 
-### User :
 
-- [ ] id (must be generated automatically)
-- [ ] First name
-- [ ] Last name
-- [ ] Age
-- [ ] Phone number
-- [ ] Address
-- [ ] Pass's id
+### API
 
-### Pass :
+Cette logique métier doit être servie par une API Rest. Voici les routes attendues:
 
-- [ ] id (must be generated automatically)
-- [ ] Pass's level
-- [ ] Created_at
-- [ ] Updated_at
 
-### Place :
+- 🛠 CRUD operations pour toutes les entités
 
-- [ ] id (must be generated automatically)
-- [ ] Address
-- [ ] Phone number
-- [ ] Minimum required pass's level to get in
-- [ ] Minimum required age to get in
+- 🚦 Une route pour vérifier si un `User` a accès à une `Place`
+
+- 🚦 Une route pour obtenir la liste des `Place` accessibles par un `User`
+
+
+### Persistance
+
+Implémentez la persistance des entités avec la BDD specifiée dans votre Stack Technique.
+
+Créer un fichier .json à la base du repository, chargé dans la BDD au lancement du serveur.
+
+___
+
+## ⚠️ Candidatures ⚠️
+
+> A ce stade, vous avez implémenté une API Rest assez basique servant une logique métier. Ce kata donne une grande importance à **l'industrialisation** que vous développez autour. Voici une liste d'améliorations possibles du projet. Implémentez celles qui vous semblent les plus pertinantes (à indiquer dans un readme !)
+
+### Améliorations
+
+* Containerisation:
+    * Dockerfile générant une image pour l'API.
+    * docker-compose.yml pour lancer l'API + la database
+
+* Sécurité
+    * Ajouter un endpoint pour générer un token d'accès
+    * Protéger les routes derrière le token d'accès
+    * Un `Pass` ne doit pouvoir être accédé que par son `User`
+
+* Tests
+    * Couverture de test Jest
+    * Lancement de la test-suite via un script npm ou bash
+
+* Documentation / Interface
+    * Specification des routes en format Swagger
+    * Ajout d'un front swagger pour faciliter le testing manuel des routes
+
+
+
+
+# Specification [RFC2119](https://microformats.org/wiki/rfc-2119-fr) du kata
+
+> Description précise & sans ambiguité sur les termes de ce qui est attendu
+
+
+* Le candidat `DOIT` implémenter 
+* Le candidat `DOIT` implémenter les codes de retour suivant: 200, 201, 400, 401, 403, 404, 500
+
