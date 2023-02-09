@@ -82,8 +82,7 @@ Mettre rapidement en place une API sans passer par de framework haut-niveau, et 
 > Description précise & sans ambiguité sur les termes de ce qui est attendu
 
 
-* Le candidat `DOIT` implémenter au moins 2 des 4 pistes d'Amélioration proposées. Ces améliorations `DOIVENT` être documentées dans le Readme.
-* Le candidat `PEUT` proposer & justifier une autre piste d'amélioration.
+* Le candidat `PEUT` proposer & justifier une autre piste d'amélioration.  Ces améliorations `DOIVENT` être documentées dans le Readme.
 * Le candidat `DOIT` implémenter les codes de retour suivant: 200, 201, 400, 401, 403, 404, 500.
 * L'API `DOIT` être accessible via curl.
 * Le candidat `DEVRAIT` structurer son code dans une logique Models/Controllers/Routes
