@@ -5,7 +5,7 @@
 
 ## Stack Techniques
 
-* Javascript: Express + MongoDB _(utiliser le .nvmrc et package.json fournis)_
+* Javascript: Node.JS + Express + MongoDB _(utiliser le .nvmrc et package.json fournis)_
 * Python: Flask + MongoDB
 
 Votre application se base tout d'abord sur la modélisation d'entités: `User`, `Pass` et `Place`
@@ -71,6 +71,11 @@ ___
 
 
 
+# Motivation & Contexte
+
+Mettre rapidement en place une API sans passer par de framework haut-niveau, et en respectant une stack technique donnée. Mettre en place des best-practice d'industrialisation pour faciliter la mise à disposition de l'application, assurer sa sécurité & la qualité du code rendu.
+
+
 
 # Specification [RFC2119](https://microformats.org/wiki/rfc-2119-fr) du kata
 
@@ -81,6 +86,7 @@ ___
 * Le candidat `PEUT` proposer & justifier une autre piste d'amélioration.
 * Le candidat `DOIT` implémenter les codes de retour suivant: 200, 201, 400, 401, 403, 404, 500.
 * L'API `DOIT` être accessible via curl.
+* Le candidat `DEVRAIT` structurer son code dans une logique Models/Controllers/Routes
 * Le candidat `DOIT` respecter la stack technique qui lui est demandée.
 
 
