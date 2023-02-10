@@ -5,10 +5,11 @@
 
 ## Stack Techniques
 
+Le kata peut être réalisé avec une de ces 2 stacks:
+
 * Javascript: Node.JS + Express + MongoDB _(utiliser le .nvmrc et package.json fournis)_
 * Python: Flask + MongoDB
 
-Votre application se base tout d'abord sur la modélisation d'entités: `User`, `Pass` et `Place`
 
 ## Implémentation
 
@@ -16,6 +17,7 @@ Votre application se base tout d'abord sur la modélisation d'entités: `User`, 
 ### Logique métier
 ![schema](./media-assets/entity-diagram.png)
 
+Votre application se base tout d'abord sur la modélisation d'entités: `User`, `Pass` et `Place`
 
 Les `User` ont des `Pass`. Ces `Pass` leur donnent l'accès à des `Place` moyennant un niveau d'accès, _level_, un entier compris entre 1 et 5.
 
