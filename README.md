@@ -52,7 +52,7 @@ ___
 
 > A ce stade, vous avez implémenté une API Rest assez basique servant une logique métier. Ce kata donne une grande importance à **l'industrialisation** que vous développez autour. Voici une liste d'améliorations possibles du projet. Implémentez celles qui vous semblent les plus pertinantes (à indiquer dans un readme !)
 
-> **Pour le rendu, Poussez sur une nouvelle branche git et ouvrez une merge request vers Main**
+> **Pour le rendu, Poussez sur une nouvelle branche git, ouvrez une merge request vers Main, et notifiez votre interlocuteur par message que le kata est fini.**
 
 ### Améliorations
 
