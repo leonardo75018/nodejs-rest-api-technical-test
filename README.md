@@ -46,6 +46,12 @@ Implémentez la persistance des entités avec la BDD specifiée dans votre Stack
 
 Créer un fichier .json à la base du repository, chargé dans la BDD au lancement du serveur.
 
+### Containerisation
+
+Pour permettre au reviewer de corriger votre kata, il faut nécessairement fournir un projet **containerisé**:
+* Dockerfile générant une image pour l'API.
+* docker-compose.yml pour lancer l'API + la database Mongo
+
 ___
 
 ## ⚠️ Candidatures et modalités de rendu ⚠️
@@ -55,10 +61,6 @@ ___
 > **Pour le rendu, Poussez sur une nouvelle branche git, ouvrez une merge request vers Main, et notifiez votre interlocuteur par message que le kata est fini.**
 
 ### Améliorations
-
-* Containerisation:
-    * Dockerfile générant une image pour l'API.
-    * docker-compose.yml pour lancer l'API + la database
 
 * Sécurité
     * Ajouter un endpoint pour générer un token d'accès
@@ -93,5 +95,6 @@ Mettre rapidement en place une API sans passer par de framework haut-niveau, et 
 * L'API `DOIT` être accessible via curl.
 * Le candidat `DEVRAIT` structurer son code dans une logique Models/Controllers/Routes
 * Le candidat `DOIT` respecter la stack technique qui lui est demandée.
+* La commande _"docker-compose up"_  `DOIT` permettre d'accéder au serveur localement.
 
 
