@@ -7,7 +7,7 @@
     "Valentin STOCKMAN"
   ],
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/app.ts"
+    "dev": "ts-node-dev --respawn --transpile-only src/infrastructure/app.ts"
   },
   "description": "",
   "dependencies": {

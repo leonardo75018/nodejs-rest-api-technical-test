@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import express from 'express'
-import { connectToMongoDB } from './Config'
-import AppRoutes from './Routes'
+import { connectToMongoDB } from './config'
+import AppRoutes from './routes'
 
 const app = express()
 
