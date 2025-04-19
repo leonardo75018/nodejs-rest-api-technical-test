@@ -6,16 +6,28 @@ import {
   CreatePlaceTypeParams,
   UpdatePlaceTypeParams
 } from '../../domain/types'
+import { validatePassLevel } from '../helpers'
 
 export class PlaceService implements IPlaceService {
   async createPlace(
     createPlaceTypeParams: CreatePlaceTypeParams
   ): Promise<IPlace> {
     try {
+      const isValidLevel = validatePassLevel(
+        createPlaceTypeParams.required_pass_level
+      )
+
+      if (!isValidLevel) {
+        throw new AppError('Pass level must be between 1 and 5', 400)
+      }
+
       const place = new Place(createPlaceTypeParams)
       await place.save()
       return place.toObject()
     } catch (err) {
+      if (err instanceof AppError) {
+        throw err
+      }
       throw new AppError('Failed to create place', 500)
     }
   }
