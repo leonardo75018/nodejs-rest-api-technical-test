@@ -1,9 +1,11 @@
 import { IPlace } from '../entities'
+import { CreatePlaceTypeParams } from '../types'
+import { UpdatePlaceTypeParams } from '../types/UpdatePlaceTypeParams'
 
 export interface IPlaceService {
-  createPlace(): Promise<IPlace>
-  findPlaceById(): Promise<IPlace>
+  createPlace(createPlaceTypeParams: CreatePlaceTypeParams): Promise<IPlace>
+  findPlaceById(placeId: string): Promise<IPlace | null>
   findAllPlaces(): Promise<IPlace[]>
-  updatePlace(): Promise<IPlace>
-  deletePlace(): Promise<void>
+  updatePlace(updatePlaceTypeParams: UpdatePlaceTypeParams): Promise<IPlace>
+  deletePlace(placeId: string): Promise<void>
 }

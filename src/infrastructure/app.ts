@@ -9,6 +9,7 @@ const app = express()
 
 connectToMongoDB()
 
+app.use(express.json())
 app.use(AppRoutes)
 
 app.listen(process.env.PORT, () => {
