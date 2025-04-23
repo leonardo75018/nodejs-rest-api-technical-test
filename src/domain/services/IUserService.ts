@@ -1,9 +1,11 @@
 import { IUser } from '../entities'
+import { CreateUserTypeParams } from '../types'
+import { UpdateUserTypeParams } from '../types/UpdateUserTypeParams'
 
 export interface IUseService {
-  createUser(): Promise<IUser>
-  findUserById(): Promise<IUser>
+  createUser(createUserTypeParams: CreateUserTypeParams): Promise<IUser>
+  findUserById(userId: string): Promise<IUser>
   findUsers(): Promise<IUser[]>
-  updateUser(): Promise<IUser>
-  deleteUser(): Promise<void>
+  updateUser(updateUserTypeParams: UpdateUserTypeParams): Promise<IUser>
+  deleteUser(userId: string): Promise<void>
 }

@@ -5,7 +5,7 @@ import verifyPlaceAccessLevel from './verifyPlaceAccessLevel'
 import verifyPlaceAgeAccess from './verifyPlaceAgeAccess'
 
 export async function verifyUserAccessToPlace(user: IUser, place: IPlace) {
-  const userPassLevel = await verifyPassLevel(user.pass_id.toString())
+  const userPassLevel = await verifyPassLevel(user.pass_id)
   const hasLevel = verifyPlaceAccessLevel(
     place.required_pass_level,
     userPassLevel

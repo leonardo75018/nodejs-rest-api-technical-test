@@ -6,5 +6,8 @@ const passController = new PassController()
 
 PassRoutes.post('/', passController.create)
 PassRoutes.get('/', passController.findAll)
+PassRoutes.get('/:id', passController.findById)
+PassRoutes.delete('/:id', passController.delete)
+PassRoutes.put('/:id', passController.update)
 
 export default PassRoutes

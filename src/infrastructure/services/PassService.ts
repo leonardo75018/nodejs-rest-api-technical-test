@@ -1,28 +1,29 @@
 import { IPass } from '../../domain/entities'
+import { CreatePassTypeParams } from '../../domain/types'
 import { IPassService } from '../../domain/services/index'
 import Pass from '../models/Pass'
-import { CreatePassTypeParams } from '../../domain/types/index'
 import { AppError } from '../utils'
 import { UpdatePassTypeParams } from '../../domain/types/UpdatePassTypeParams'
-import { validatePassLevel } from '../helpers'
+import { validatePassLevel } from './validators/validatePassLevel'
+
+import { Types } from 'mongoose'
 
 export class PassService implements IPassService {
-  async createPass(createPassparams: number): Promise<IPass> {
-    console.log(createPassparams)
+  async createPass(createPassparams: CreatePassTypeParams): Promise<IPass> {
     try {
-      const isValidLevel = validatePassLevel(createPassparams)
+      const isValidLevel = validatePassLevel(createPassparams.level)
       if (!isValidLevel) {
         throw new AppError('Pass level must be between 1 and 5', 400)
       }
 
-      const existingPass = await Pass.findOne({ level: createPassparams })
+      const existingPass = await Pass.findOne(createPassparams)
       if (existingPass?.level) {
         throw new AppError('A pass with this level already exists', 400)
       }
 
-      const pass = new Pass({ level: createPassparams })
+      const pass = new Pass(createPassparams)
       await pass.save()
-      return pass.toObject()
+      return pass.toObject() as IPass
     } catch (err) {
       if (err instanceof AppError) {
         throw err
@@ -34,27 +35,35 @@ export class PassService implements IPassService {
   async findAllPass(): Promise<IPass[]> {
     try {
       const passes = await Pass.find()
-      return passes.map(p => p.toObject())
+      return passes.map(p => p.toObject()) as IPass[]
     } catch (err) {
       throw new AppError('Failed to retrieve passes', 500)
     }
   }
 
   async findPassById(id: string): Promise<IPass | null> {
-    const pass = await Pass.findById(id)
+    const objectId = new Types.ObjectId(id)
+
+    const pass = await Pass.findById(objectId)
     if (!pass) {
       throw new AppError('Pass not found', 404)
     }
-    return pass.toObject()
+    return pass.toObject() as IPass
   }
 
   async updatePass(params: UpdatePassTypeParams): Promise<IPass> {
     const { passId, level } = params
+
+    const isValidLevel = validatePassLevel(level)
+    if (!isValidLevel) {
+      throw new AppError('Pass level must be between 1 and 5', 400)
+    }
+
     const pass = await Pass.findByIdAndUpdate(passId, { level }, { new: true })
     if (!pass) {
       throw new AppError('Pass not found', 404)
     }
-    return pass.toObject()
+    return pass.toObject() as IPass
   }
 
   async deletePass(passId: string): Promise<void> {

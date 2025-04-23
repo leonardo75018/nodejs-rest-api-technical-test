@@ -1,10 +1,23 @@
 version: '3.8'
 
 services:
+  api:
+    build: .
+    container_name: my-api
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/placeapi
+    command: npm run dev
+
   mongo:
     image: mongo:6
     container_name: mongodb
-    restart: always
     ports:
       - '27017:27017'
     volumes:

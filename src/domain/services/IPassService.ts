@@ -3,9 +3,9 @@ import { CreatePassTypeParams } from '../types'
 import { UpdatePassTypeParams } from '../types'
 
 export interface IPassService {
-  createPass(CreatePassparams: number): Promise<IPass>
+  createPass(CreatePassparams: CreatePassTypeParams): Promise<IPass>
   findPassById(passid: string): Promise<IPass | null>
   findAllPass(): Promise<IPass[]>
-  updatePass(params: UpdatePassTypeParams): Promise<IPass>
-  deletePass(passid: string): Promise<void>
+  updatePass(passId: UpdatePassTypeParams): Promise<IPass>
+  deletePass(passId: string): Promise<void>
 }
